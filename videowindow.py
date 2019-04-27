@@ -5,9 +5,16 @@ import cv2
 from PIL import Image
 from PIL import ImageTk
 import imutils
+import socket
+
+s = socket.socket()
+
+s.bind(('192.168.43.212', 8090))
+s.listen(0)
+
 
 class videofeed:
-    def __init__(self,vs, outputPath):
+    def __init__(self, vs, outputPath):
         self.vs = vs
         self.outputPath = outputPath
         self.frame = None
@@ -16,7 +23,6 @@ class videofeed:
         self.root = Tk()
         self.panel = None
         self.panel2 = None
-
         self.stopEvent = threading.Event()
         self.thread = threading.Thread(target=self.videoLoop, args=())
         self.thread.start()
@@ -31,34 +37,46 @@ class videofeed:
         self.vs.release()
         self.root.quit()
 
+    def getData(self):
+        while True:
+
+            client, addr = s.accept()
+
+            while True:
+                content = client.recv(32)
+                arduinoData = content.decode('ascii').strip()
+
+                if len(content) == 0:
+                    break
+
+                else:
+                    return arduinoData
+
+            print("Closing connection")
+            client.close()
 
     def videoLoop(self):
-        # DISCLAIMER:
-        # I'm not a GUI developer, nor do I even pretend to be. This
-        # try/except statement is a pretty ugly hack to get around
-        # a RunTime error that Tkinter throws due to threading
         try:
-            # keep looping over frames until we are instructed to stop
+
             while not self.stopEvent.is_set():
-                # grab the frame from the video stream and resize it to
-                # have a maximum width of 300 pixels
                 _, self.frame = self.vs.read()
                 self.frame = imutils.resize(self.frame, width=1420)
 
-                # OpenCV represents images in BGR order; however PIL
-                # represents images in RGB order, so we need to swap
-                # the channels, then convert to PIL and ImageTk format
                 image = cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB)
+                image = cv2.flip(image, 1)
                 image = Image.fromarray(image)
                 image = ImageTk.PhotoImage(image)
 
-                # if the panel is not None, we need to initialize it
+                # if the panel is None, we need to initialize it
                 if self.panel is None:
                     self.panel = Label(image=image)
                     self.panel.image = image
                     self.panel.pack(side="left", padx=10, pady=10)
-                    self.panel2 = Frame(height="1080", width="500")
+                    self.panel2 = Frame(self.root, height="1080", width="500", bg="red")
                     self.panel2.pack(side="left", padx=10, pady=10)
+                    Label(self.panel2, text='Sir, I dont understand why you use Tkinter', borderwidth=1).pack(
+                        side="top")
+                    Label(self.panel2, text=self.getData(), borderwidth=1).pack(side="top")
                 # otherwise, simply update the panel
                 else:
                     self.panel.configure(image=image)
@@ -68,10 +86,13 @@ class videofeed:
             print("[INFO] caught a RuntimeError")
 
 
-
 vs = cv2.VideoCapture(0)
 
 pba = videofeed(vs, r"D:/")
+
+# comments shit
+
+
 pba.root.mainloop()
 
 # root = tk.ThemedTk()
