@@ -1,4 +1,4 @@
-from tkinter import Label, Tk, Frame
+from tkinter import Label, Tk, Frame, Button
 # from ttkthemes import themed_tk as tk
 import threading
 import numpy as np
@@ -66,6 +66,7 @@ class videofeed:
         self.drawing_state = False
         self.pen_location = (0, 0)
         self.query_image_coord = (0, 0)
+        self.query_image_src = []
         self.query_image = ''
         self.get_image_flag = False
 
@@ -186,6 +187,8 @@ class videofeed:
                 if (self.get_image_flag):
 
                     if self.query_image != '':
+                        self.query_image_src = cv2.imread(self.query_image)
+                        self.query_image_src = cv2.resize(self.query_image_src, (150, 150))
                         self.get_image_flag = False
 
                 image = self.process_image(image)
@@ -199,7 +202,10 @@ class videofeed:
                     self.panel.image = tkinter_image
                     self.panel.pack(side="left", padx=10, pady=10)
                     self.panel2 = Frame(self.root, height="1080", width="300", bg="red")
-                    self.panel2.pack(side="left", padx=10, pady=10)
+                    # self.panel2.pack(side="left", padx=10, pady=10)
+                    b1 = Button(self.panel2, text="Empty screen")
+                    b1.bind("<Button-1>", self.callback)
+                    self.panel2.pack(side="left")
                     Label(self.panel2, text='Sir, I dont understand why you use Tkinter', borderwidth=1).pack(
                         side="top")
                     Label(self.panel2, text="lol2", borderwidth=1).pack(side="top")
@@ -212,6 +218,9 @@ class videofeed:
 
         except RuntimeError:
             print("[INFO] caught a RuntimeError")
+    def callback(self):
+        self.query_image=''
+        self.drawings=[]
 
     def process_image(self, image):
 
@@ -220,13 +229,13 @@ class videofeed:
             for i in range(len(drawing) - 1):
                 cv2.line(image, drawing[i], drawing[i + 1], (255, 0, 0), 2)
 
-        if self.query_image != '':
+        if len(self.query_image_src) != 0:
             print(self.query_image)
-            q_img = cv2.imread(self.query_image)
-            q_img = cv2.resize(q_img, (150, 150))
+            # q_img = cv2.imread(self.query_image)
+            # q_img = cv2.resize(q_img, (150, 150))
 
             image[self.query_image_coord[1]:self.query_image_coord[1] + 150,
-            self.query_image_coord[0]:self.query_image_coord[0] + 150] = q_img
+            self.query_image_coord[0]:self.query_image_coord[0] + 150] = self.query_image_src
 
         cv2.circle(image, self.pen_location, 2, (0, 255, 0), -1)
 
