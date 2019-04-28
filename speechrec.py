@@ -71,4 +71,4 @@ def get_image(self):
     render_image = True
     self.query_image = picfname
 
-get_word()
+get_image()

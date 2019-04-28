@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/videowindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
+            <state relative-caret-position="247">
+              <caret line="176" column="25" selection-start-line="176" selection-start-column="25" selection-end-line="176" selection-end-column="25" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -37,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/speechrec.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="28" selection-start-line="28" selection-end-line="71" selection-end-column="31" />
+            <state relative-caret-position="409">
+              <caret line="73" column="11" lean-forward="true" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -78,8 +78,8 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="G:/lolman.py" />
         <option value="$PROJECT_DIR$/../LiveED/main.py" />
-        <option value="$PROJECT_DIR$/speechrec.py" />
         <option value="$PROJECT_DIR$/videowindow.py" />
+        <option value="$PROJECT_DIR$/speechrec.py" />
       </list>
     </option>
   </component>
@@ -125,7 +125,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.speechrec">
+  <component name="RunManager" selected="Python.videowindow">
     <configuration name="lolman" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="LiveEd_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -233,8 +233,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.speechrec" />
         <item itemvalue="Python.videowindow" />
+        <item itemvalue="Python.speechrec" />
         <item itemvalue="Python.lolman" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
@@ -330,8 +330,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/speechrec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="28" selection-start-line="28" selection-end-line="71" selection-end-column="31" />
+        <state relative-caret-position="409">
+          <caret line="73" column="11" lean-forward="true" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -340,8 +340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/videowindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="8" />
+        <state relative-caret-position="247">
+          <caret line="176" column="25" selection-start-line="176" selection-start-column="25" selection-end-line="176" selection-end-column="25" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>

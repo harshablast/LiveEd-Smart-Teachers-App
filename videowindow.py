@@ -112,7 +112,7 @@ class videofeed:
         buffer = 1
         render_image = True
         self.query_image = picfname
-        
+
     def onClose(self):
         # set the stop event, cleanup the camera, and allow the rest of
         # the quit process to continue
