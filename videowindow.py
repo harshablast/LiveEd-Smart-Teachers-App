@@ -202,13 +202,16 @@ class videofeed:
                     self.panel.image = tkinter_image
                     self.panel.pack(side="left", padx=10, pady=10)
                     self.panel2 = Frame(self.root, height="1080", width="300", bg="red")
-                    # self.panel2.pack(side="left", padx=10, pady=10)
-                    b1 = Button(self.panel2, text="Empty screen")
-                    b1.bind("<Button-1>", self.callback)
-                    self.panel2.pack(side="left")
-                    Label(self.panel2, text='Sir, I dont understand why you use Tkinter', borderwidth=1).pack(
-                        side="top")
-                    Label(self.panel2, text="lol2", borderwidth=1).pack(side="top")
+
+                    b1 = Button(self.panel2, text="Empty screen", command= self.clearsc)
+                    # b1.bind("<Button-1>", self.clearsc)
+                    b1.pack(side="top"
+                                 "")
+                    self.panel2.pack(side="left", padx=10, pady=10)
+
+                    # Label(self.panel2, text='Sir, I dont understand why you use Tkinter', borderwidth=1).pack(
+                    #     side="top")
+                    # Label(self.panel2, text="lol2", borderwidth=1).pack(side="top")
                 # otherwise, simply update the panel
                 else:
                     self.panel.configure(image=tkinter_image)
@@ -218,8 +221,8 @@ class videofeed:
 
         except RuntimeError:
             print("[INFO] caught a RuntimeError")
-    def callback(self):
-        self.query_image=''
+    def clearsc(self):
+        self.query_image_src=[]
         self.drawings=[]
 
     def process_image(self, image):
