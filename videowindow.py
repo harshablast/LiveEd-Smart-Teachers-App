@@ -27,6 +27,7 @@ class videofeed:
         self.stopEvent = threading.Event()
         self.thread = threading.Thread(target=self.videoLoop, args=())
         self.thread2 = threading.Thread(target=self.penLoop, args = ())
+        self.thread3 = threading.Thread(target=self.get_image, args=())
         self.thread.start()
         self.thread2.start()
         self.root.wm_title("LiveEd")
