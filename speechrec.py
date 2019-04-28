@@ -45,7 +45,7 @@ def get_word():
     waveFile.setframerate(RATE)
     waveFile.writeframes(b''.join(frames))
     waveFile.close()
-    raud = sr.AudioFile(r'D:\ClassBuddy\recorded_audio.wav')
+    raud = sr.AudioFile(r'D:\LiveED\LiveEd_2\recorded_audio.wav')
     with raud as source:
         raudio = r.record(source)
         word = r.recognize_google(raudio)
@@ -54,18 +54,20 @@ def get_word():
             'num': 1,
             'searchType': 'image'
         }
-        if os.path.exists(r"D:\ClassBuddy\pics"):
-            shutil.rmtree(r'D:\ClassBuddy\pics')
-        gis.search(search_params=_search_params, path_to_dir=r'D:\ClassBuddy\pics')
+        if os.path.exists(r"D:\LiveED\LiveEd_2\pics"):
+            shutil.rmtree(r'D:\LiveED\LiveEd_2\pics')
+        gis.search(search_params=_search_params, path_to_dir=r'D:\LiveED\LiveEd_2\pics')
 
-        pic = os.listdir(r'D:\ClassBuddy\pics')[0]
+        pic = os.listdir(r'D:\LiveED\LiveEd_2\pics')[0]
         global picfname
-        picfname = os.path.join('D:\ClassBuddy\pics', pic)
+        picfname = os.path.join('D:\LiveED\LiveEd_2\pics', pic)
 
         query_img = cv2.imread(picfname)
         query_img = cv2.resize(query_img, (128, 128))
         query_images['images'].append(query_img)
-        query_images['coords'].append(topmost_last)
+        query_images['coords'].append(1)
         print("Your word: " + word)
     buffer = 1
     render_image = True
+
+get_word()
