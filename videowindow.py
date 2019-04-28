@@ -9,8 +9,9 @@ import socket
 
 s = socket.socket()
 
-s.bind(('192.168.43.212', 8090))
+s.bind(('192.168.43.115', 8090))
 s.listen(0)
+
 
 
 class videofeed:
