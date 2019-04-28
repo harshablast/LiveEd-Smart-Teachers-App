@@ -7,10 +7,10 @@ from PIL import ImageTk
 import imutils
 import socket
 
-# s = socket.socket()
+s = socket.socket()
 
-#s.bind('192.168.43.212', 8090))
-#s.listen(0)
+s.bind(('192.168.43.115', 8090))
+s.listen(0)
 
 
 
@@ -35,8 +35,8 @@ class videofeed:
 
         self.drawings = []
         self.pen_properties = {
-            color: (255, 0, 0)
-            size: 10
+            "color": (255, 0, 0),
+            "size": 10
         }
         self.pen_state = 0
         self.drawing_state = False
@@ -120,6 +120,8 @@ class videofeed:
                 else:
                     self.panel.configure(image=tkinter_image)
                     self.panel.image = tkinter_image
+
+                print(self.pen_state)
 
         except RuntimeError:
             print("[INFO] caught a RuntimeError")
