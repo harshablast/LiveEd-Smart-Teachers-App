@@ -41,7 +41,7 @@ class videofeed:
         self.pen_state = 0
         self.drawing_state = False
         self.pen_location = (0, 0)
-
+        self.query_image_coord = (0, 0)
         self.query_image = []
         self.get_image_flag = False
 
@@ -106,6 +106,9 @@ class videofeed:
 
                     if (!self.get_image_flag):
 
+                        self.get_image_flag = True
+                        self.query_image_coord = self.pen_location
+                        self.query_image = []
                         self.thread3.start()
 
 
