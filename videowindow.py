@@ -65,7 +65,7 @@ class videofeed:
         self.drawing_state = False
         self.pen_location = (0, 0)
         self.query_image_coord = (0, 0)
-        self.query_image = []
+        self.query_image = None
         self.get_image_flag = False
 
     def get_image(self):
@@ -179,6 +179,15 @@ class videofeed:
                         self.query_image = []
                         self.thread3.start()
 
+                if(self.get_image_flag):
+
+                    if query_image != None:
+
+                        self.get_image_flag == False
+
+
+
+
 
                 tkinter_image = Image.fromarray(image)
                 tkinter_image = ImageTk.PhotoImage(tkinter_image)
@@ -210,6 +219,13 @@ class videofeed:
             for i in range(len(drawing)-1):
 
                 cv2.line(image, drawing[i], drawing[i+1], (255, 0, 0), 2)
+
+        if self.query_image != None:
+
+            q_img = cv2.imread(self.query_image)
+            q_img = cv2.resize(q_img, (150, 150))
+
+            image[self.query_image_coord[1]:self.query_image_coord[1] + 150, self.query_image_coord[0]:self.query_image_coord[0] + 150] = q_img
 
 
     def get_pen_location(self, img):
