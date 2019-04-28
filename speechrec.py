@@ -26,7 +26,7 @@ query_images = {
         'coords': []
     }
 
-def get_word():
+def get_image(self):
     # Audio
     audio = pyaudio.PyAudio()
     stream = audio.open(format=FORMAT, channels=CHANNELS,
@@ -69,5 +69,6 @@ def get_word():
         print("Your word: " + word)
     buffer = 1
     render_image = True
+    self.query_image = picfname
 
 get_word()
