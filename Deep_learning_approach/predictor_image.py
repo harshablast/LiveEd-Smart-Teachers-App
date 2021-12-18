@@ -1,10 +1,10 @@
 import cv2
-import tensorflow as tf
+from tensorflow.keras.models import load_model
 import numpy as np
 
-model = tf.keras.models.load_model("Pen-CNN.model")
+model = load_model("Pen-CNN.model")
 
-img_array = cv2.imread('/home/siddharth/LiveED/Pen473.jpg', cv2.IMREAD_GRAYSCALE)
+img_array = cv2.imread('Pen473.jpg', cv2.IMREAD_GRAYSCALE)
 img_array = cv2.resize(img_array,(100,100))
 X = np.array(img_array).reshape(-1, 100, 100, 1)
 X = X.astype(np.float32)
